@@ -19,7 +19,8 @@ const projectSchema = new mongoose.Schema({
     },
     Pbudget: {
         type: Number,
-        required: true
+        required: true, 
+        min: 0
     }
 })
 
