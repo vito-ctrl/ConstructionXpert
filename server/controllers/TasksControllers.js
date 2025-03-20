@@ -7,7 +7,7 @@ router.post('/api/tasks', async(req, res) => {
         const creatTasks = {
             Tdescription: req.body.Tdescription,
             TstartDate: req.body.TstartDate,
-            Tenddate: req.body.Tenddate,
+            TendDate: req.body.TendDate,
             Tresources: req.body.Tresources
         } 
         const task = new Stask(creatTasks)

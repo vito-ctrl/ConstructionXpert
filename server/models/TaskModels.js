@@ -9,7 +9,7 @@ const TaskSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    Tenddate: {
+    TendDate: {
         type: Date,
         required: true
     },
