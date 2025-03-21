@@ -3,10 +3,7 @@ import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
-
-const formatCurrency = (value) => {
-    return new Intl.NumberFormat('en-US').format(value);
-};
+import TaskList from "./TaskList";
 
 const Tasks = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -112,26 +109,6 @@ const Tasks = () => {
                     </button>
                 </div>
 
-                {/* Display tasks */}
-                {loading ? (
-                    <p>Loading tasks...</p>
-                ) : tasks.length > 0 ? (
-                    <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        {tasks.map((task) => (
-                            <div key={task._id} className="p-4 border rounded-lg shadow-sm bg-white dark:bg-gray-800">
-                                <h3 className="font-bold text-lg">{task.Tresources}</h3>
-                                <p className="text-gray-600 dark:text-gray-300">{task.Tdescription}</p>
-                                <div className="mt-2 text-sm">
-                                    <p>Start: {new Date(task.TstartDate).toLocaleDateString()}</p>
-                                    <p>End: {new Date(task.TendDate).toLocaleDateString()}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <p>No tasks found. Create a task to get started.</p>
-                )}
-
                 {/* Main modal */}
                 {isOpen && (
                     <div
@@ -162,7 +139,7 @@ const Tasks = () => {
                             <form onSubmit={formik.handleSubmit}>
                                 <div className="p-4 space-y-4">
                                     <div>
-                                        <label htmlFor="Tresources" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Name</label>
+                                        <label htmlFor="Tresources" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task Name</label>
                                         <input 
                                             type="text" 
                                             id="Tresources"
@@ -263,6 +240,7 @@ const Tasks = () => {
                     </div>
                 )}
             </div>
+                <TaskList tasks={tasks} loading={loading}/>
             <Footer/>
         </>
     );

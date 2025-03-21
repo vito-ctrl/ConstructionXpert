@@ -163,6 +163,23 @@ const Projects = () => {
                                     </div>
 
                                     <div>
+                                        <label htmlFor="Pdescription" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task Description</label>
+                                        <textarea 
+                                            id="Pdescription"
+                                            name="Pdescription" 
+                                            value={formik.values.Pdescription}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Enter task description"
+                                            rows="3"
+                                        />
+                                        {formik.touched.Pdescription && formik.errors.Pdescription ? (
+                                            <div className="text-red-500 text-sm mt-1">{formik.errors.Pdescription}</div>
+                                        ) : null}
+                                    </div>
+
+                                    <div>
                                         <label htmlFor="PstartDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Date</label>
                                         <div id="date-range-picker" className="flex items-center">
                                             <div className="relative">

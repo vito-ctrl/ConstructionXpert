@@ -21,15 +21,13 @@ const ProjectList = ({projects, loading}) => {
                 throw new Error(`HTTP error! Status: ${res.status}`)
             } 
             const data = await res.json()
-            console.log(data)
             setnewProjects(data)  // Update state with fetched data
             console.log('get session data : ', data)
         } catch (error){
             console.log(error)
         }
     }
-
-    console.log(projects)
+    
     return(
         <div className='container mx-auto px-4 py-8'>
             {loading ? (
