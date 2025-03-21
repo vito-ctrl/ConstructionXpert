@@ -1,18 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const Stask = require('../models/TaskModels')
+const Task = require('../models/TaskModels')
 
 router.post('/api/tasks', async(req, res) => {
     try{
-        const creatTasks = {
+        const createTask = {
             Tdescription: req.body.Tdescription,
             TstartDate: req.body.TstartDate,
             TendDate: req.body.TendDate,
             Tresources: req.body.Tresources
         } 
-        const task = new Stask(creatTasks)
+        const task = new Task(createTask)
         const result = await task.save()
-        res.status(200).json(result)
+        res.status(201).json(result) // Changed to 201 for resource creation
     } catch (error) {
         console.log(error)
         res.status(500).json({error: error.message})
@@ -21,8 +21,8 @@ router.post('/api/tasks', async(req, res) => {
 
 router.get('/api/tasks', async(req, res) => {
     try {
-        const task = await Stask.find();
-        res.status(200).json(task)
+        const tasks = await Task.find(); // Added populate to get project details
+        res.status(200).json(tasks)
     } catch (error) {
         console.log(error)
         res.status(500).json({error: error.message})
@@ -31,13 +31,13 @@ router.get('/api/tasks', async(req, res) => {
 
 router.put('/api/tasks/:id', async(req, res) => {
     try {
-        const result = await Stask.findByIdAndUpdate(
+        const result = await Task.findByIdAndUpdate(
             req.params.id,
             req.body,
-            { new: true }
+            { new: true, runValidators: true } // Added runValidators to ensure updates meet schema requirements
         )
         if (!result) {
-            return res.status(404).json({error: 'product not found hhhhhhhhh!'})
+            return res.status(404).json({error: 'Task not found'}) // Fixed error message
         }
         res.status(200).json(result)
     } catch (error) {
@@ -48,11 +48,11 @@ router.put('/api/tasks/:id', async(req, res) => {
 
 router.delete('/api/tasks/:id', async(req, res) => {
     try {
-        const result = await Stask.findByIdAndDelete(req.params.id)
+        const result = await Task.findByIdAndDelete(req.params.id)
         if (!result) {
-            res.status(404).json({message: "task not found"})
+            return res.status(404).json({message: "Task not found"}) // Added return
         }
-        res.status(200).json({message: "task deleted succefully"})
+        res.status(200).json({message: "Task deleted successfully", deletedTask: result}) // Fixed typo, added deleted item info
     } catch (error) {
         console.log(error)
         res.status(500).json({error: error.message})

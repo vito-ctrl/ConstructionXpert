@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
+const tasks = require('./TaskModels')
 
 const projectSchema = new mongoose.Schema({
+    task:{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'tasks',
+        required: true
+    },
     Pname: {
         type: String,
         required: true

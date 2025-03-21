@@ -94,7 +94,7 @@ const UpdateTask = ({updatedTask}) => {
                             {/* Modal body */}
                             <div className="p-1 space-y-2">
                             <div>
-                                <label htmlFor="Tresources" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project name</label>
+                                <label htmlFor="Tresources" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">task name</label>
                                 <input 
                                 type="text" 
                                 id="Tresources"
@@ -110,7 +110,7 @@ const UpdateTask = ({updatedTask}) => {
                                 ) : null}
                             </div>
 
-                            <label htmlFor="TstartDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Date</label>
+                            <label htmlFor="TstartDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">task Date</label>
                             <div id="date-range-picker" className="flex items-center">
                             <div className="relative">
                                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -154,7 +154,7 @@ const UpdateTask = ({updatedTask}) => {
                             </div>
 
                             <div>
-                                <label htmlFor="Tdescription" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Description</label>
+                                <label htmlFor="Tdescription" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">task Description</label>
                                 <textarea 
                                 id="Tdescription"
                                 name="Tdescription" 
@@ -175,7 +175,7 @@ const UpdateTask = ({updatedTask}) => {
                             <div className="flex items-center p-4 border-t border-gray-200 rounded-b dark:border-gray-600">
                                 <button
                                     type="submit"
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    className="text-white bg-green-700 hover:bg-green-800  rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700"
                                 >
                                     Update
                                 </button>
