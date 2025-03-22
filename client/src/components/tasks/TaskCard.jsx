@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 const TaskCard = ({e}) => {
     const Navigation = useNavigate();
+    const Navigate = () => {
+        Navigation('/resources', {
+            state: {taskID: e._id}
+        })
+    }
+
     return (
         <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
             <div className="p-4" key={e.id}>
@@ -31,11 +37,11 @@ const TaskCard = ({e}) => {
                 </div>
                 <div className='flex justify-center'>
                     <button 
-                    onClick={() => Navigation('/resources')}
+                    onClick={Navigate}
                     className="flex rounded-md bg-orange-600 py-2 px-10 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-orange-700  active:bg-orange-700 hover:bg-orange-700 ">
                     <img src={ViewIcon} className='w-5 h-5 mr-2 mt-0.5'/>
                         
-                        view task
+                        view resources
                     </button>
                 </div>
             </div>

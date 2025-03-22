@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const resourcesSchema = new mongoose.Schema({
+    task:{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'tasks',
+        required: true
+    },
     Rname: {
         type: String,
         required: true
