@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Project = require('../models/ProjectModels') 
+const Task = require('../models/TaskModels')
 
 router.post('/api/projects', async(req, res) => {
     try {
@@ -50,15 +51,23 @@ router.put('/api/projects/:id', async(req, res) => {
 
 router.delete('/api/projects/:id', async(req, res) => {
     try {
-        const project = await Project.findByIdAndDelete(req.params.id)
+        const project = await Project.findById(req.params.id)
         
         if (!project) {
             return res.status(404).json({message: "Project not found"}) // Fixed error message
         }
-
-        const resolt = Task.findByIdAndDelete(req.body.id) 
         
-        res.status(200).json({message: 'Project deleted successfully', deletedProject: result}) // Fixed typo and message, added deleted item info
+        if(project){
+            const deletedTasks  = await Task.deleteMany({ project: req.params.id })
+            console.log(deletedTasks )
+        }
+
+        const result = await Project.findByIdAndDelete(req.params.id); 
+        
+        res.status(200).json({
+            message: 'Project deleted successfully', 
+            deletedProject: result
+        }) 
     } catch (error) {
         console.error(error);
         res.status(500).json({error: error.message})

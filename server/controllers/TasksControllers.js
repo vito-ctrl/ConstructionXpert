@@ -52,8 +52,8 @@ router.put('/api/tasks/:id', async(req, res) => {
 
 router.delete('/api/tasks/:id', async(req, res) => {
     try {
-        const result = await Task.findByIdAndDelete(req.params.id)
-        if (!result) {
+        const task = await Task.findByIdAndDelete(req.params.id)
+        if (!task) {
             return res.status(404).json({message: "Task not found"}) // Added return
         }
         res.status(200).json({message: "Task deleted successfully", deletedTask: result}) // Fixed typo, added deleted item info
