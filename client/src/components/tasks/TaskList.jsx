@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import TaskCard from "./TaskCard"
+import { useLocation } from "react-router-dom";
 
 const TaskList = ({tasks, loading}) => {
     const [newtasks, setnewtasks] = useState([])  // Change to array and better naming
@@ -9,9 +10,14 @@ const TaskList = ({tasks, loading}) => {
         getData()
     }, [])
 
+    const location = useLocation();
+    const project_id = location.state?.projectID
+    const projectID = project_id
+
     const getData = async() => {
         try {
-            const res = await fetch('http://localhost:3000/api/tasks', {
+            console.log(projectID)
+            const res = await fetch(`http://localhost:3000/api/tasks/${projectID}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

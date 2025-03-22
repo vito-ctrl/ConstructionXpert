@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const Project = require('../models/ProjectModels') // Updated variable name for consistency
+const Project = require('../models/ProjectModels') 
 
 router.post('/api/projects', async(req, res) => {
     try {
         const createProject = {
-            task: req.body.task,
             Pname: req.body.Pname,
             Pdescription: req.body.Pdescription,
             PstartDate: req.body.PstartDate,
@@ -23,7 +22,7 @@ router.post('/api/projects', async(req, res) => {
 
 router.get('/api/projects', async(req, res) => {
     try {
-        const projects = await Project.find().populate('task');
+        const projects = await Project.find();
         res.status(200).json(projects);
     } catch (error) {
         console.log(error);
@@ -51,10 +50,14 @@ router.put('/api/projects/:id', async(req, res) => {
 
 router.delete('/api/projects/:id', async(req, res) => {
     try {
-        const result = await Project.findByIdAndDelete(req.params.id)
-        if (!result) {
+        const project = await Project.findByIdAndDelete(req.params.id)
+        
+        if (!project) {
             return res.status(404).json({message: "Project not found"}) // Fixed error message
         }
+
+        const resolt = Task.findByIdAndDelete(req.body.id) 
+        
         res.status(200).json({message: 'Project deleted successfully', deletedProject: result}) // Fixed typo and message, added deleted item info
     } catch (error) {
         console.error(error);

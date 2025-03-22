@@ -5,6 +5,7 @@ const Task = require('../models/TaskModels')
 router.post('/api/tasks', async(req, res) => {
     try{
         const createTask = {
+            project: req.body.project,
             Tdescription: req.body.Tdescription,
             TstartDate: req.body.TstartDate,
             TendDate: req.body.TendDate,
@@ -19,10 +20,13 @@ router.post('/api/tasks', async(req, res) => {
     }
 })
 
-router.get('/api/tasks', async(req, res) => {
+router.get('/api/tasks/:projectId', async(req, res) => {
     try {
-        const tasks = await Task.find(); // Added populate to get project details
-        res.status(200).json(tasks)
+        const task = await Task.find({ project: req.params.projectId }).populate('project'); 
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+        res.status(200).json(task)
     } catch (error) {
         console.log(error)
         res.status(500).json({error: error.message})

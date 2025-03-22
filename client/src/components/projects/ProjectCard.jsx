@@ -10,7 +10,9 @@ import { useNavigate } from 'react-router-dom'
 const ProjectCard = ({e}) => {
     const navigation = useNavigate()
     const Navigate = () => {
-        navigation('/Tasks')
+        navigation('/Tasks',{
+            state: {projectID: e._id}
+        })
     }
     return (
         <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">

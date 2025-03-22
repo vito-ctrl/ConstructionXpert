@@ -4,6 +4,7 @@ import Navbar from "../common/Navbar";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import TaskList from "./TaskList";
+import { useLocation } from "react-router-dom";
 
 const Tasks = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,15 +14,18 @@ const Tasks = () => {
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
 
+    const location = useLocation();
+    const project_id = location.state?.projectID
+    const projectID = project_id
     // Fetch tasks on initial load
     useEffect(() => {
         fetchTasks();
     }, []);
-
+    
     const fetchTasks = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/api/tasks', {
+            const res = await fetch(`http://localhost:3000/api/tasks/${projectID}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,6 +55,7 @@ const Tasks = () => {
 
     const formik = useFormik({
         initialValues: {
+            project: projectID,
             Tdescription: "",
             TstartDate: "",
             TendDate: "",
@@ -58,6 +63,7 @@ const Tasks = () => {
         },
         validationSchema,
         onSubmit: async (values) => {
+            console.log('this is project id : ', projectID)
             console.log("Form submitted:", values);
             try {
                 const res = await fetch('http://localhost:3000/api/tasks', {

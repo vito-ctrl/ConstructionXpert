@@ -1,6 +1,12 @@
 const mongoose = require ('mongoose')
+const projects = require('./ProjectModels')
 
 const TaskSchema = new mongoose.Schema({
+    project:{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Project',
+        required: true
+    },
     Tdescription:{
         type: String,
         required: true

@@ -1,5 +1,4 @@
 import Projects from '../components/projects/Projects'
-// import TaskList from '../components/tasks/TaskList';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Tasks from '../components/tasks/Tasks';
 import Resources from '../components/resources/Resources';
