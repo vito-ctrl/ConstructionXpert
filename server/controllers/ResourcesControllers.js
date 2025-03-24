@@ -37,7 +37,7 @@ router.put('/api/resources/:id', async(req, res) => {
         const result = await Resource.findByIdAndUpdate(
             req.params.id,
             req.body,
-            { new: true }
+            { new: true, runValidators: true  }
         )
 
         if(!result){

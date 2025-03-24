@@ -108,13 +108,17 @@ const Projects = () => {
             
             <div>
                 {/* Modal toggle */}
-                <button
-                    onClick={openModal}
-                    className="rounded-md bg-green-600 py-2 px-4 mt-1 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 " 
-                    type="button"
-                >
-                    Add Project
-                </button>
+                <div className="mt-20 m-5 flex justify-between items-center">
+                    <h1 className="text-2xl font-bold">Projects</h1>
+                    {/* Modal toggle */}
+                    <button
+                        onClick={openModal}
+                        className="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700" 
+                        type="button"
+                    >
+                        Add project
+                    </button>
+                </div>
 
                 {/* Main modal */}
                 {isOpen && (

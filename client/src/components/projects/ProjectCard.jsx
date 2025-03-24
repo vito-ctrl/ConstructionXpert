@@ -15,7 +15,7 @@ const ProjectCard = ({e}) => {
         })
     }
     return (
-        <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+        <div className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg">
             <div className="p-4" key={e.id}>
                 <h1 className='flex justify-center mb-4 bg-slate-600 text-white font-bold text-3xl'>Project Details</h1>
                 <h1 className="flex justify-center bg-gray-100 mb-1 text-slate-800 text-xl font-semibold">

@@ -1,9 +1,9 @@
 // import { useState } from 'react'
 import DeleteIcon from '../../assets/icons8-delete-48.png'
 
-const DeleteTask = ({ deletedTask }) => {
-    const DeleteTask = async() => {
-        const res = await fetch(`http://localhost:3000/api/tasks/${deletedTask}`, {
+const DeleteResources = ({ deletedResources }) => {
+    const DeleteResource = async() => {
+        const res = await fetch(`http://localhost:3000/api/resources/${deletedResources}`, {
             method: 'DELETE',
             'Content-Type': 'application/json'
         })
@@ -12,7 +12,7 @@ const DeleteTask = ({ deletedTask }) => {
     }
     return (
         <button 
-            onClick={DeleteTask}
+            onClick={DeleteResource}
             className="flex mb-4 rounded-md bg-red-600 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 " 
             type="button"
         >
@@ -22,4 +22,4 @@ const DeleteTask = ({ deletedTask }) => {
     )
 }
 
-export default DeleteTask
+export default DeleteResources

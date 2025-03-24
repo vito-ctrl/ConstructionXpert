@@ -103,7 +103,7 @@ const Tasks = () => {
             
             <div className="container mx-auto p-4">
                 {/* Task list display */}
-                <div className="mb-4 flex justify-between items-center">
+                <div className="mt-20 m-5 flex justify-between items-center">
                     <h1 className="text-2xl font-bold">Tasks</h1>
                     {/* Modal toggle */}
                     <button
