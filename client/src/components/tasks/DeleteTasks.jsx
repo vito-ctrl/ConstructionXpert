@@ -1,8 +1,9 @@
 // import { useState } from 'react'
 import DeleteIcon from '../../assets/icons8-delete-48.png'
+import '../style/delete.css'
 
 const DeleteTask = ({ deletedTask }) => {
-    const DeleteTask = async() => {
+    const Deletetask = async() => {
         const res = await fetch(`http://localhost:3000/api/tasks/${deletedTask}`, {
             method: 'DELETE',
             'Content-Type': 'application/json'
@@ -11,13 +12,10 @@ const DeleteTask = ({ deletedTask }) => {
         location.reload();
     }
     return (
-        <button 
-            onClick={DeleteTask}
-            className="flex mb-4 rounded-md bg-red-600 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 " 
-            type="button"
-        >
-            <img src={DeleteIcon} className='w-5 h-5 mr-2 mt-0.5'/>
-            Delete
+        <button class="delete-button" onClick={Deletetask}>
+            <svg class="delete-svgIcon" viewBox="0 0 448 512">
+            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+            </svg>
         </button>
     )
 }

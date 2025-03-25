@@ -5,6 +5,7 @@ import ViewIcon from '../../assets/icons8-view-50.png'
 import Deleteproject from './Deleteproject';
 import UpdateProject from './Updateproject';
 import { useNavigate } from 'react-router-dom'
+import '../style/view.css'
 
 
 const ProjectCard = ({e}) => {
@@ -36,16 +37,13 @@ const ProjectCard = ({e}) => {
                 <img src={budgetIcon} className='w-5 h-5 mr-2 mt-0.5'/>
                     Budget: {e.Pbudget}
                 </h1>
-                <div className='flex justify-center gap-9'>
+                <div className='flex justify-center gap-9 m-5'>
                     <UpdateProject updateProject={e._id}/>
                     <Deleteproject deleteProject={e._id}/>
-                </div>
-                <div className='flex justify-center'>
                     <button 
                     onClick={Navigate}
-                    className="flex rounded-md bg-orange-600 py-2 px-10 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-orange-700  active:bg-orange-700 hover:bg-orange-700 ">
-                    <img src={ViewIcon} className='w-5 h-5 mr-2 mt-0.5'/>
-                        view task
+                    className="View-button">
+                    <img src={ViewIcon} className='View-svgIcon '/>
                     </button>
                 </div>
             </div>

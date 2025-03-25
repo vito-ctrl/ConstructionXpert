@@ -1,6 +1,7 @@
 import React from 'react';
 import DateIcon from '../../assets/icons8-date-1-48.png'
-import budgetIcon from '../../assets/icons8-money-100.png'
+import QuantityIcon from '../../assets/icons8-quantity-50.png'
+import supplierIcon from '../../assets/icons8-supplier-50.png'
 import ViewIcon from '../../assets/icons8-view-50.png'
 import UpdateResources from './UpdateResources'
 import DeleteResources from './DeleteResources'
@@ -17,11 +18,11 @@ const ResourceCard = ({e}) => {
                     {e.Rtype}
                 </p>
                 <h1 className='flex mb-2'>
-                <img src={budgetIcon} className='w-5 h-5 mr-2 mt-0.5'/>
+                <img src={QuantityIcon} className='w-5 h-5 mr-2 mt-0.5'/>
                     quantity: {e.Rquantity}
                 </h1>
                 <h1 className='flex mb-2'>
-                <img src={budgetIcon} className='w-5 h-5 mr-2 mt-0.5'/>
+                <img src={supplierIcon} className='w-5 h-5 mr-2 mt-0.5'/>
                     supplier: {e.Rsupplier}
                 </h1>
                 <div className='flex justify-center gap-9'>

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import Footer from "../common/Footer";
 import Navbar from "../common/Navbar";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import TaskList from "./TaskList";
 import { useLocation } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import '../style/add.css'
 
 const Tasks = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +66,7 @@ const Tasks = () => {
         onSubmit: async (values) => {
             console.log('this is project id : ', projectID)
             console.log("Form submitted:", values);
+            toast.success('add task succesfully')
             try {
                 const res = await fetch('http://localhost:3000/api/tasks', {
                     method: 'POST',
@@ -90,6 +92,7 @@ const Tasks = () => {
                 formik.resetForm();
                 closeModal();
                 // Refresh the tasks list
+                // location.reload();
                 fetchTasks();
             } catch(error) {
                 console.log('Error creating task:', error);
@@ -99,19 +102,23 @@ const Tasks = () => {
 
     return(
         <>
+            <Toaster/>
             <Navbar/>
-            
             <div className="container mx-auto p-4">
                 {/* Task list display */}
                 <div className="mt-20 m-5 flex justify-between items-center">
                     <h1 className="text-2xl font-bold">Tasks</h1>
                     {/* Modal toggle */}
-                    <button
-                        onClick={openModal}
-                        className="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700" 
-                        type="button"
-                    >
-                        Add Task
+                    <button className="addbutton" onClick={openModal}>
+                        <span className="text">Add</span>
+                        <span className="icon"
+                            ><svg
+                            viewBox="0 0 24 24"
+                            height="24"
+                            width="24"
+                            xmlns="http://www.w3.org/2000/svg"></svg>
+                            <span className="buttonSpan">+</span>
+                            </span>
                     </button>
                 </div>
 
@@ -236,7 +243,7 @@ const Tasks = () => {
                                     <button
                                         type="button"
                                         onClick={closeModal}
-                                        className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                                        className="py-2.5 px-5 ms-3 text-sm font-medium text-red-900 bg-white rounded-lg border border-red-200 hover:bg-red-100 hover:text-blue-700 dark:bg-gray-800 dark:text-red-400 dark:border-red-600 dark:hover:text-white dark:hover:bg-red-700"
                                     >
                                         Cancel
                                     </button>
@@ -247,7 +254,6 @@ const Tasks = () => {
                 )}
             </div>
                 <TaskList tasks={tasks} loading={loading}/>
-            <Footer/>
         </>
     );
 };

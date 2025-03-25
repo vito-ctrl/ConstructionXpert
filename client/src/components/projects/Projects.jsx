@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import Footer from "../common/Footer"
 import Navbar from "../common/Navbar"
 import ProjectList from "./ProjectList";
 import * as Yup from 'yup';
 import { useFormik } from "formik"
+import toast, { Toaster } from 'react-hot-toast'
+import '../style/add.css'
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-US').format(value);
@@ -85,6 +86,7 @@ const Projects = () => {
                 
                 const data = await res.json();
                 console.log('New project created:', data);
+                toast.success('created successfully');
                 
                 // Add the new project to the projects state
                 if (data._id) {
@@ -98,12 +100,14 @@ const Projects = () => {
                 fetchProjects();
             } catch(error) {
                 console.log('Error creating project:', error);
+                toast.error('error project add unsuccesfully')
             }
         }
     });
 
     return(
         <>
+            <Toaster />
             <Navbar/>
             
             <div>
@@ -111,13 +115,19 @@ const Projects = () => {
                 <div className="mt-20 m-5 flex justify-between items-center">
                     <h1 className="text-2xl font-bold">Projects</h1>
                     {/* Modal toggle */}
-                    <button
-                        onClick={openModal}
-                        className="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700" 
-                        type="button"
-                    >
-                        Add project
+                    {/* <!-- From Uiverse.io by UtariD86 -->  */}
+                    <button className="addbutton" onClick={openModal}>
+                        <span className="text">Add</span>
+                        <span className="icon"
+                            ><svg
+                            viewBox="0 0 24 24"
+                            height="24"
+                            width="24"
+                            xmlns="http://www.w3.org/2000/svg"></svg>
+                            <span className="buttonSpan">+</span>
+                            </span>
                     </button>
+
                 </div>
 
                 {/* Main modal */}
@@ -271,7 +281,6 @@ const Projects = () => {
                 )}
             </div>
             <ProjectList projects={projects} loading={loading}/>
-            <Footer/>
         </>
     )
 }

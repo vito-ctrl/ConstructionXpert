@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import UpdateIcon from '../../assets/icons8-update-64.png'
+import UpdateIcon from '../../assets/icons8-update-50.png'
 import * as Yup from 'yup';
 import { useFormik } from "formik"
+import '../style/Update.css'
 
 // Add missing formatCurrency function
 
@@ -54,13 +55,10 @@ const UpdateResources = ({updateResource}) => {
     return (
         <>
             {/* Modal toggle */}
-            <button
-                onClick={openModal}
-                className="flex mb-4 rounded-md bg-green-600 py-2 px-4 mt-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 " 
-                type="button"
-            >
-            <img src={UpdateIcon} className='w-5 h-5 mr-2 mt-0.5'/>
-                Update resources
+            <button 
+            className="Update-button"
+            onClick={openModal}>
+                <img src={UpdateIcon} alt="Update Icon" className="Update-svgIcon " />
             </button>
 
             {/* Main modal */}

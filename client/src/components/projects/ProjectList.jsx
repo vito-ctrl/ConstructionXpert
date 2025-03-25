@@ -29,7 +29,7 @@ const ProjectList = ({projects, loading}) => {
     }
     
     return(
-        <div className='container mx-auto px-4 py-8'>
+        <div className='container pb-16 mx-auto px-4 py-8'>
             {loading ? (
                 <div className="flex justify-center items-center p-4">
                     <p className="text-gray-500">Loading projects...</p>
